@@ -72,8 +72,8 @@ const Login = () => {
                     </div>
                 </div>
             </div>
-            <p className="subtitle">New here? <Link to="/register">Signup</Link></p>
-            <p className="subtitle">Forgot password? <Link to="/reset-password">Reset</Link></p>
+            <p className="subtitle mt-1" >New here? <Link to="/register">Signup</Link></p>
+            <p className="subtitle" style={{lineHeight:"0.1px"}}>Forgot password? <Link to="/reset-password">Reset</Link></p>
 
         </form>
     )
