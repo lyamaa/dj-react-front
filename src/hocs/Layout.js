@@ -1,13 +1,15 @@
 import React from 'react'
 import Navbar from "../components/Navbar"
 
-const Layout = (props) =>(
-   
-        <div>
-        <Navbar />
-            {props.children}
-        </div>
-    
+const Layout = (props) => (
+    <>
+      <Navbar />
+    <section className="section">
+      
+        {props.children}
+    </section>
+    </>
+
 )
 
 export default Layout

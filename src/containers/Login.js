@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { login } from "../management/actions/auth"
 
-const Login = () => {
+const Login = ({ login }) => {
     const [formData, setFormData] = useState({
         email: '',
         password: ''
@@ -18,11 +19,11 @@ const Login = () => {
     const onSubmit = e => {
         e.preventDefault();
 
-        // login(email, password)
+        login(email, password)
     }
 
     return (
-        <form className="box">
+        <form className="box" onSubmit={onSubmit}>
             <h1 className="title">Sign In</h1>
             <p className="subtitle">Sign In to your account</p>
 
@@ -34,9 +35,9 @@ const Login = () => {
                         placeholder="Email"
                         name='email'
                         value={email}
-                        onChange={e => onChange(e)} 
-                        required 
-                        />
+                        onChange={e => onChange(e)}
+                        required
+                    />
                     <span className="icon is-small is-left">
                         <i className="fas fa-envelope"></i>
                     </span>
@@ -66,14 +67,14 @@ const Login = () => {
             <div className="field-body">
                 <div className="field">
                     <div className="control">
-                        <button className="button is-primary">
+                        <button className="button is-primary" type="submit">
                             Send message
                             </button>
                     </div>
                 </div>
             </div>
             <p className="subtitle mt-1" >New here? <Link to="/register">Signup</Link></p>
-            <p className="subtitle" style={{lineHeight:"0.1px"}}>Forgot password? <Link to="/reset-password">Reset</Link></p>
+            <p className="subtitle" style={{ lineHeight: "0.1px" }}>Forgot password? <Link to="/reset-password">Reset</Link></p>
 
         </form>
     )
@@ -83,4 +84,4 @@ const Login = () => {
 
 // })
 
-export default connect(null, { }) (Login)
+export default connect(null, { login })(Login)
