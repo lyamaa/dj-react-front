@@ -24,7 +24,7 @@ const App = () => (
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/activate/:uid/:token" component={Activate} />
                     <Route exact path="/reset-password" component={ResetPassword} />
-                    <Route exact path="/password/reset/confirm/:uid/:token" component={ResetPasswordConfirm} />
+                    <Route exact path="/email/reset/confirm/:uid/:token" component={ResetPasswordConfirm} />
                 </Switch>
             </Layout>
         </Router>
