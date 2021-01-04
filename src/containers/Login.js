@@ -30,6 +30,7 @@ const Login = ({ login, isAuthenticated }) => {
         <form className="box" onSubmit={onSubmit}>
             <h1 className="title">Sign In</h1>
             <p className="subtitle">Sign In to your account</p>
+            <hr className="divider" />
 
             <div className="field">
                 <label className="label">Email</label>
@@ -72,7 +73,7 @@ const Login = ({ login, isAuthenticated }) => {
                 <div className="field">
                     <div className="control">
                         <button className="button is-primary" type="submit">
-                            Send message
+                            Sign In
                             </button>
                     </div>
                 </div>
