@@ -1,0 +1,96 @@
+:root {
+    --bg: #3c1874;
+    --card-bg: #041221;
+  }
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body{
+    font-family: "Poppins", sans-serif;
+    background: var(--bg);
+    width: 100vw;
+    height: 100vh;
+  }
+
+  
+  .box {
+    width: 40%;
+    margin-left: 25%;
+    box-shadow: 100px, 100px;
+    -webkit-box-shadow: 0 0 10px rgb(0, 0, 0);
+    -moz-box-shadow: 0 0 10px rgb(0, 0, 0);
+    
+    
+  }
+  
+  
+  .section {
+    background: var(--bg);
+  }
+  
+  input::placeholder {
+    color: antiquewhite;
+  }
+  
+  .navbar {
+    background: var(--card-bg);
+  }
+  
+  .navbar-item {
+    color: ghostwhite;
+  }
+  
+  /* Card start*/
+  .card {
+    overflow: hidden;
+    background: ghostwhite;
+    color: var(--bg);
+  }
+  
+  .card.large {
+    border-radius: 5px;
+  }
+  
+  .title.no-padding {
+    margin-bottom: 0 !important;
+  }
+
+  footer {
+    position: -webkit-sticky; /* Safari */
+   
+    top: 0;
+    position: sticky;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 5%;
+
+    color: white;
+    text-align: center;
+  }
+  .footer {
+    background: var(--card-bg);
+    color: ghostwhite;
+    
+  }
+  
+  .footer p,
+  strong {
+    color: ghostwhite
+  }
+  
+  .footer a:hover {
+    color: crimson;
+  }
+  
+  .fa {
+    color: ghostwhite;
+    margin: 10px
+  }
+
+  .buttons{
+    margin-right: 1rem;
+  }
