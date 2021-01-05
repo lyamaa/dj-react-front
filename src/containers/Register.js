@@ -1,17 +1,21 @@
 import React, { useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { login } from "../management/actions/auth"
+import { register } from "../management/actions/auth"
+import axios from "axios"
 
-const Register = ({isAuthenticated }) => {
+const Register = ({ register, isAuthenticated }) => {
+    const [accountCreated, setAccountCreated] = useState(false)
     const [formData, setFormData] = useState({
         email: '',
-        name: '',
+        username: '',
+        first_name:'',
+        last_name:'',
         password: '',
         re_password: ''
     })
 
-    const { email, name, password, re_password } = formData;
+    const { email, username, first_name, last_name,  password, re_password } = formData;
 
     const onChange = e => setFormData({
         ...formData,
@@ -21,11 +25,39 @@ const Register = ({isAuthenticated }) => {
     const onSubmit = e => {
         e.preventDefault();
 
-        // login(email, name, password, re_password)
+        if (password === re_password) {
+            register(email, username, first_name, last_name,  password, re_password)
+            setAccountCreated(true)
+        }
     }
 
-    if (isAuthenticated){
+    const googleLogin = async () => {
+        try {
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/auth/o/google-oauth2/?redirect_uri=${process.env.REACT_APP_API_URL}/google`)
+
+            window.location.replace(res.data.authorization_url);
+
+        } catch (err) {
+
+        }
+    }
+
+    const facenbookLogin = async () => {
+        try {
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/auth/o/facebook/?redirect_uri=${process.env.REACT_APP_API_URL}/facebook`)
+
+            window.location.replace(res.data.authorization_url);
+
+        } catch (err) {
+
+        }
+    }
+
+    if (isAuthenticated) {
         return <Redirect to="/" />
+    }
+    if (accountCreated) {
+        return <Redirect to="/login" />
     }
 
     return (
@@ -52,21 +84,57 @@ const Register = ({isAuthenticated }) => {
             </div>
 
             <div className="field">
-                <label className="label">Name</label>
+                <label className="label">Username</label>
                 <div className="control has-icons-left has-icons-right">
                     <input className="input is-success"
                         type="text"
-                        placeholder="Name"
-                        name='name'
-                        value={name}
+                        placeholder="Username"
+                        name='username'
+                        value={username}
                         onChange={e => onChange(e)}
                         required
                     />
                     <span className="icon is-small is-left">
-                        <i className="fas fa-envelope"></i>
+                        <i className="fas fa-user"></i>
                     </span>
                 </div>
             </div>
+
+            <div className="field">
+                <label className="label">First Name</label>
+                <div className="control has-icons-left has-icons-right">
+                    <input className="input is-success"
+                        type="text"
+                        placeholder="First Name"
+                        name='first_name'
+                        value={first_name}
+                        onChange={e => onChange(e)}
+                        required
+                    />
+                    <span className="icon is-small is-left">
+                        <i className="fas fa-user"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div className="field">
+                <label className="label">Last Name</label>
+                <div className="control has-icons-left has-icons-right">
+                    <input className="input is-success"
+                        type="text"
+                        placeholder="Last Name"
+                        name='last_name'
+                        value={last_name}
+                        onChange={e => onChange(e)}
+                        required
+                    />
+                    <span className="icon is-small is-left">
+                        <i className="fas fa-user"></i>
+                    </span>
+                </div>
+            </div>
+
+
 
             <div className="field">
                 <label className="label">Password</label>
@@ -94,7 +162,7 @@ const Register = ({isAuthenticated }) => {
                         className="input is-success"
                         type="password"
                         placeholder="Confirm Password"
-                        name='re-password'
+                        name='re_password'
                         value={re_password}
                         onChange={e => onChange(e)}
                         minLength='6'
@@ -113,17 +181,31 @@ const Register = ({isAuthenticated }) => {
                         <button className="button is-primary" type="submit">
                             Sign In
                             </button>
+                        <br />
+                        <button class="button is-danger mt-3" onClick={googleLogin} >
+                            <span class="icon">
+                                <i class="fab fa-google"></i>
+                            </span>
+                            <span>Continue with Google</span>
+                        </button>
+                        &nbsp;  &nbsp;
+                        <button class="button is-info  mt-3" >
+                            <span class="icon">
+                                <i class="fab fa-facebook"></i>
+                            </span>
+                            <span>Continue with Facebook</span>
+                        </button>
                     </div>
                 </div>
             </div>
             <p className="subtitle mt-1" >Got Account? <Link to="/login">Sign In</Link></p>
-           
+
         </form>
     )
 }
 
-// const mapStateToProps = state =>({
-//  isAuthenticated: state.auth.isAuthenticated
-// })
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+})
 
-export default connect(null, {  })(Register)
+export default connect(mapStateToProps, { register })(Register)

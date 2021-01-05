@@ -1,11 +1,19 @@
-import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Fragment, useState } from 'react'
+import { Link, Redirect } from 'react-router-dom'
 import logo from "../assets/src/img/auth.png"
 
 import { connect } from 'react-redux'
 import { logout } from "../management/actions/auth"
 
 const Navbar = ({ logout, isAuthenticated }) => {
+
+  const [redirect, setRedirect] = useState(false)
+
+  const logout_user = () => {
+    logout();
+    setRedirect(true)
+
+  }
 
   const guestLink = () => (
     <Fragment>
@@ -21,12 +29,14 @@ const Navbar = ({ logout, isAuthenticated }) => {
   )
 
   const authLink = () => (
-    <Link href="#!" className="button is-light" onClick={logout}>
+    <a href="/login" className="button is-light" onClick={logout}>
       Logout
-    </Link>
+    </a>
+    
   )
   
   return (
+    <Fragment>
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <Link className="navbar-item" to="/">
@@ -46,31 +56,9 @@ const Navbar = ({ logout, isAuthenticated }) => {
             Home
             </Link>
 
-          <Link to="#" className="navbar-item">
-            Documentation
-            </Link>
+          
 
-          <div className="navbar-item has-dropdown is-hoverable">
-            <Link to="#" className="navbar-link">
-              More
-              </Link>
-
-            <div className="navbar-dropdown">
-              <Link to="/" className="navbar-item">
-                About
-                </Link>
-              <Link to="#" className="navbar-item">
-                Jobs
-                </Link>
-              <Link to="#" className="navbar-item">
-                Contact
-                </Link>
-              <hr className="navbar-divider" />
-              <Link to="#" className="navbar-item">
-                Report an issue
-                </Link>
-            </div>
-          </div>
+          
         </div>
 
         <div className="navbar-end">
@@ -81,6 +69,8 @@ const Navbar = ({ logout, isAuthenticated }) => {
         </div>
       </div>
     </nav>
+    {redirect ? <Redirect to="/" /> : <Fragment />}
+    </Fragment>
   )
 }
 

@@ -1,25 +1,27 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import Navbar from "../components/Navbar"
 
-import {connect} from 'react-redux'
-import {checkAuthenticated, load_user} from '../management/actions/auth'
 
-const Layout = (props) => {
+import { connect } from 'react-redux'
+import { checkAuthenticated, load_user } from '../management/actions/auth'
+
+const Layout = ({checkAuthenticated, load_user, children}) => {
 
   useEffect(() => {
-    props.checkAuthenticated();
-    props.load_user();
+    checkAuthenticated();
+    load_user();
   }, [])
   return (
     <>
       <Navbar />
-    <section className="section">
-      
-        {props.children}
-    </section>
+      <section className="section" >
+
+        {children}
+      </section>
+     
     </>
 
   )
 }
 
-export default connect(null, {checkAuthenticated, load_user}) (Layout);
+export default connect(null, { checkAuthenticated, load_user })(Layout);
