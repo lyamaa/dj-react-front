@@ -25,7 +25,9 @@
     
     
   }
-  
+  .hero {
+      margin-right: 1.5rem ;
+  }
   
   .section {
     background: var(--bg);
