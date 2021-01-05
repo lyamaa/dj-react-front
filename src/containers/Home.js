@@ -53,7 +53,7 @@ const Home = () => (
                     <p class="title is-4 no-padding">DEMO</p>
                     <p>
                       <span class="title is-6">
-                        <a href=""> DEMO</a> </span> </p>
+                        <a href="/"> DEMO</a> </span> </p>
                     <p class="subtitle is-6"></p>
                   </div>
                 </div>
@@ -82,7 +82,7 @@ const Home = () => (
                     <p class="title is-4 no-padding">DEMO</p>
                     <p>
                       <span class="title is-6">
-                        <a href=""> DEMO</a> </span> </p>
+                        <a href="/"> DEMO</a> </span> </p>
                     <p class="subtitle is-6"></p>
                   </div>
                 </div>
@@ -111,7 +111,7 @@ const Home = () => (
                     <p class="title is-4 no-padding">DEMO</p>
                     <p>
                       <span class="title is-6">
-                        <a href=""> DEMO</a> </span> </p>
+                        <a href="/"> DEMO</a> </span> </p>
                     <p class="subtitle is-6"></p>
                   </div>
                 </div>

@@ -11,6 +11,7 @@ import ResetPassword from "./containers/ResetPassword"
 import ResetPasswordConfirm from "./containers/ResetPasswordConfirm"
 import Facebook from "./containers/Facebook"
 import Google from "./containers/Google"
+import Message from "./containers/Message"
 
 import { Provider } from 'react-redux'
 import store from "./management/store"
@@ -26,6 +27,7 @@ const App = () => (
                     <Route exact path="/google" component={Google} />
                     <Route exact path="/facebook" component={Facebook} />
                     <Route exact path="/register" component={Register} />
+                    <Route exact path="/message" component={Message} />
                     <Route exact path="/activate/:uid/:token" component={Activate} />
                     <Route exact path="/reset-password" component={ResetPassword} />
                     <Route exact path="/email/reset/confirm/:uid/:token" component={ResetPasswordConfirm} />

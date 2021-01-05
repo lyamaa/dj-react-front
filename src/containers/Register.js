@@ -57,7 +57,7 @@ const Register = ({ register, isAuthenticated }) => {
         return <Redirect to="/" />
     }
     if (accountCreated) {
-        return <Redirect to="/login" />
+        return <Redirect to="/message" />
     }
 
     return (
